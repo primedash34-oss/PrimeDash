@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>قائمة المأكولات الشهية والعريقة والكاملة</title>
+<title>Prime Dash — قائمة المأكولات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
@@ -598,12 +598,10 @@
 </head>
 <body>
 
-<!-- Particles -->
 <div class="particles" id="particles"></div>
 
-<!-- NAV -->
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">🍽 المأكولات الشهية</a>
+  <a href="#hero" class="nav-logo" dir="ltr">Prime<span style="color:var(--rust);font-family:'Tajawal',sans-serif;font-weight:900;letter-spacing:-2px"> —</span> Dash</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#menu" onclick="closeNav()">القائمة</a></li>
     <li><a href="#about" onclick="closeNav()">عنّا</a></li>
@@ -612,14 +610,12 @@
   <div class="nav-toggle" onclick="toggleNav()">☰</div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="ring"></div>
   <div class="ring"></div>
   <div class="ring"></div>
 
-  <!-- Corner ornaments (SVG stars) -->
   <svg class="corner-ornament tl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M50 5 L61 35 L95 35 L68 57 L79 91 L50 70 L21 91 L32 57 L5 35 L39 35 Z" stroke="#c9973a" stroke-width="1.5" fill="none"/>
     <path d="M50 20 L57 40 L80 40 L62 53 L69 75 L50 62 L31 75 L38 53 L20 40 L43 40 Z" stroke="#c9973a" stroke-width="0.5" fill="rgba(201,151,58,0.05)"/>
@@ -635,8 +631,9 @@
   </svg>
 
   <div class="hero-content">
-    <div class="hero-badge">مطبخ أصيل • وصفات عريقة • طعم لا يُنسى</div>
+    <div class="hero-badge">PRIME DASH • مأكولات شهية • طعم لا يُنسى</div>
     <h1 class="hero-title">
+      <span style="font-family:'Tajawal',sans-serif;font-size:0.55em;letter-spacing:0.08em;color:var(--gold);font-weight:900;">PRIME DASH</span>
       قائمة المأكولات
       <span>الشهية والعريقة</span>
     </h1>
@@ -649,17 +646,15 @@
   </div>
 </section>
 
-<!-- MENU -->
 <section id="menu">
   <div class="section-header reveal">
     <div class="section-label">القائمة الكاملة</div>
-    <h2 class="section-title">كل اللي قلبك يتمنّاه 🤤</h2>
+    <h2 class="section-title">كل اللي قلبك يتمنّاه </h2>
     <div class="gold-line"><div class="gold-line-dot"></div></div>
   </div>
 
   <div class="menu-grid">
 
-    <!-- محاشي وطواجن (right column) -->
     <div class="menu-category reveal">
       <div class="category-header">
         <span class="category-icon">🫕</span>
@@ -684,7 +679,6 @@
       </div>
     </div>
 
-    <!-- أطباق اللحوم والدواجن -->
     <div class="menu-category reveal">
       <div class="category-header">
         <span class="category-icon">🍗</span>
@@ -721,7 +715,6 @@
       </div>
     </div>
 
-    <!-- محاشي وطواجن (left column) -->
     <div class="menu-category reveal">
       <div class="category-header">
         <span class="category-icon">🍲</span>
@@ -746,7 +739,6 @@
       </div>
     </div>
 
-    <!-- الشوربة والمقبلات -->
     <div class="menu-category reveal">
       <div class="category-header">
         <span class="category-icon">🥣</span>
@@ -775,7 +767,6 @@
       </div>
     </div>
 
-    <!-- المكرونة والأرز -->
     <div class="menu-category reveal">
       <div class="category-header">
         <span class="category-icon">🍝</span>
@@ -792,7 +783,6 @@
       </div>
     </div>
 
-    <!-- الحلويات -->
     <div class="menu-category reveal">
       <div class="category-header">
         <span class="category-icon">🍮</span>
@@ -808,7 +798,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-header reveal">
     <div class="section-label">قصتنا</div>
@@ -844,7 +833,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="section-header reveal">
     <div class="section-label">تواصل معنا</div>
@@ -859,7 +847,6 @@
 
     <div class="contact-cards reveal">
 
-      <!-- Phone -->
       <a href="tel:01204110502" class="contact-card">
         <span class="contact-icon">📞</span>
         <span class="contact-label">اتصل بنا</span>
@@ -867,7 +854,6 @@
         <span class="contact-action">اضغط للاتصال المباشر</span>
       </a>
 
-      <!-- WhatsApp -->
       <a href="https://wa.me/201204110502" target="_blank" class="contact-card whatsapp">
         <span class="contact-icon">💬</span>
         <span class="contact-label">واتساب</span>
@@ -883,9 +869,8 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>صُنع بحب لأجمل مطبخ بيتي 🍽 &nbsp;|&nbsp; <span>جميع الحقوق محفوظة © 2025</span></p>
+  <p><bdi>Prime Dash</bdi> — مطبخ أصيل بحب حقيقي 🍽 &nbsp;|&nbsp; جميع الحقوق محفوظة © 2025</p>
 </footer>
 
 <script>
