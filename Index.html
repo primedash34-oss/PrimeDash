@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قائمة المأكولات الشهية والعريقة والكاملة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gold: #c9973a;
+    --gold-light: #e8b84b;
+    --gold-pale: #f5e6c0;
+    --deep: #1a0f00;
+    --brown: #3d1f00;
+    --cream: #fdf6e3;
+    --rust: #8b2e00;
+    --warm-white: #fefaf0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--deep);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ───── NOISE TEXTURE OVERLAY ───── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ───── HERO ───── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,151,58,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 80% 100%, rgba(139,46,0,0.25) 0%, transparent 60%),
+      linear-gradient(160deg, #1a0f00 0%, #2c1400 40%, #1a0a00 100%);
+  }
+
+  /* Ornamental rings */
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(201,151,58,0.15);
+    animation: pulse-ring 4s ease-in-out infinite;
+  }
+  .ring:nth-child(1) { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0s; }
+  .ring:nth-child(2) { width: 900px; height: 900px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 0.8s; }
+  .ring:nth-child(3) { width: 1200px; height: 1200px; top: 50%; left: 50%; transform: translate(-50%,-50%); animation-delay: 1.6s; }
+
+  @keyframes pulse-ring {
+    0%, 100% { opacity: 0.2; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 0.5; transform: translate(-50%,-50%) scale(1.03); }
+  }
+
+  /* Islamic star pattern - decorative corners */
+  .corner-ornament {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    opacity: 0.3;
+  }
+  .corner-ornament.tl { top: 20px; right: 20px; }
+  .corner-ornament.tr { top: 20px; left: 20px; transform: scaleX(-1); }
+  .corner-ornament.bl { bottom: 20px; right: 20px; transform: scaleY(-1); }
+  .corner-ornament.br { bottom: 20px; left: 20px; transform: scale(-1); }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    padding: 0.4rem 1.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 300;
+    animation: fadeInDown 1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--gold-pale);
+    text-shadow: 0 0 60px rgba(201,151,58,0.4);
+    animation: fadeInDown 1s ease 0.2s both;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title span {
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(245,230,192,0.65);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease 0.4s both;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease 0.5s both;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: '';
+    flex: 1;
+    max-width: 150px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .hero-divider-gem {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 15px var(--gold);
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.6s both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #a87830 100%);
+    color: var(--deep);
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,151,58,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-outline:hover {
+    background: rgba(201,151,58,0.1);
+    transform: translateY(-2px);
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(26,15,0,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,151,58,0.2);
+    transition: all 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(245,230,192,0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ───── SECTIONS ───── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--gold-pale);
+    margin-bottom: 1rem;
+  }
+
+  .gold-line {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  .gold-line::before, .gold-line::after {
+    content: '';
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .gold-line::after { background: linear-gradient(90deg, var(--gold), transparent); }
+  .gold-line-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--gold);
+  }
+
+  /* ───── MENU SECTION ───── */
+  #menu {
+    background: linear-gradient(180deg, var(--deep) 0%, #200e00 50%, var(--deep) 100%);
+  }
+
+  .menu-grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+
+  .menu-category {
+    background: linear-gradient(145deg, rgba(61,31,0,0.6) 0%, rgba(26,15,0,0.8) 100%);
+    border: 1px solid rgba(201,151,58,0.25);
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+  .menu-category:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,151,58,0.5);
+  }
+
+  /* Corner cut accents */
+  .menu-category::after {
+    content: '';
+    position: absolute;
+    top: -1px; right: -1px;
+    width: 24px; height: 24px;
+    background: var(--gold);
+    clip-path: polygon(0 0, 100% 100%, 100% 0);
+    opacity: 0.6;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(201,151,58,0.3);
+  }
+
+  .category-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 8px rgba(201,151,58,0.5));
+  }
+
+  .category-title {
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px dashed rgba(201,151,58,0.12);
+    transition: background 0.2s;
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item:hover { background: rgba(201,151,58,0.05); padding-right: 0.5rem; padding-left: 0.5rem; border-radius: 4px; }
+
+  .item-name {
+    font-size: 0.92rem;
+    color: var(--cream);
+    line-height: 1.4;
+    flex: 1;
+  }
+
+  .item-price {
+    font-size: 0.82rem;
+    color: var(--gold);
+    white-space: nowrap;
+    font-weight: 700;
+    background: rgba(201,151,58,0.1);
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    border: 1px solid rgba(201,151,58,0.2);
+    flex-shrink: 0;
+  }
+
+  /* ───── ABOUT SECTION ───── */
+  #about {
+    background: #120900;
+  }
+
+  .about-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-text {
+    font-size: 1.15rem;
+    line-height: 2;
+    color: rgba(245,230,192,0.75);
+    font-weight: 300;
+  }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    padding: 1.8rem 1.2rem;
+    border: 1px solid rgba(201,151,58,0.2);
+    text-align: center;
+    background: rgba(61,31,0,0.3);
+    transition: all 0.3s;
+  }
+  .feature-card:hover {
+    background: rgba(61,31,0,0.6);
+    border-color: rgba(201,151,58,0.5);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+  .feature-title { font-size: 1rem; color: var(--gold-light); font-weight: 700; }
+
+  /* ───── CONTACT ───── */
+  #contact {
+    background: linear-gradient(180deg, var(--deep) 0%, #0d0500 100%);
+  }
+
+  .contact-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 500px) {
+    .contact-cards { grid-template-columns: 1fr; }
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(201,151,58,0.25);
+    background: rgba(61,31,0,0.4);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,151,58,0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .contact-card:hover::before { opacity: 1; }
+  .contact-card:hover {
+    border-color: rgba(201,151,58,0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 30px rgba(201,151,58,0.1);
+  }
+
+  .contact-icon {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 0 10px rgba(201,151,58,0.4));
+  }
+
+  .contact-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .contact-value {
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    color: var(--gold-pale);
+    direction: ltr;
+  }
+
+  .contact-action {
+    font-size: 0.8rem;
+    color: rgba(201,151,58,0.6);
+  }
+
+  /* WhatsApp special glow */
+  .contact-card.whatsapp:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 30px rgba(37,211,102,0.15);
+    border-color: rgba(37,211,102,0.4);
+  }
+
+  .note-bar {
+    margin-top: 3rem;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(201,151,58,0.2);
+    background: rgba(139,46,0,0.15);
+    font-size: 0.9rem;
+    color: rgba(245,230,192,0.6);
+  }
+
+  /* ───── FOOTER ───── */
+  footer {
+    position: relative;
+    z-index: 1;
+    background: #0a0400;
+    border-top: 1px solid rgba(201,151,58,0.2);
+    padding: 2rem;
+    text-align: center;
+    color: rgba(245,230,192,0.35);
+    font-size: 0.85rem;
+  }
+  footer span { color: var(--gold); }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ───── FLOATING GOLD PARTICLES ───── */
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0;
+    animation: float-up linear infinite;
+  }
+
+  @keyframes float-up {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ───── MOBILE NAV ───── */
+  .nav-toggle { display: none; cursor: pointer; color: var(--gold); font-size: 1.5rem; }
+
+  @media (max-width: 768px) {
+    .nav-toggle { display: block; }
+    .nav-links {
+      position: fixed;
+      top: 60px; left: 0; right: 0;
+      background: rgba(26,15,0,0.98);
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      gap: 1.5rem;
+      transform: translateY(-150%);
+      transition: transform 0.3s;
+      border-bottom: 1px solid rgba(201,151,58,0.2);
+    }
+    .nav-links.open { transform: translateY(0); }
+    .menu-grid { grid-template-columns: 1fr; }
+    .corner-ornament { width: 60px; height: 60px; }
+  }
+
+  /* Shimmer animation on price tags */
+  @keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">🍽 المأكولات الشهية</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#menu" onclick="closeNav()">القائمة</a></li>
+    <li><a href="#about" onclick="closeNav()">عنّا</a></li>
+    <li><a href="#contact" onclick="closeNav()">تواصل معنا</a></li>
+  </ul>
+  <div class="nav-toggle" onclick="toggleNav()">☰</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+
+  <!-- Corner ornaments (SVG stars) -->
+  <svg class="corner-ornament tl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 5 L61 35 L95 35 L68 57 L79 91 L50 70 L21 91 L32 57 L5 35 L39 35 Z" stroke="#c9973a" stroke-width="1.5" fill="none"/>
+    <path d="M50 20 L57 40 L80 40 L62 53 L69 75 L50 62 L31 75 L38 53 L20 40 L43 40 Z" stroke="#c9973a" stroke-width="0.5" fill="rgba(201,151,58,0.05)"/>
+  </svg>
+  <svg class="corner-ornament tr" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 5 L61 35 L95 35 L68 57 L79 91 L50 70 L21 91 L32 57 L5 35 L39 35 Z" stroke="#c9973a" stroke-width="1.5" fill="none"/>
+  </svg>
+  <svg class="corner-ornament bl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 5 L61 35 L95 35 L68 57 L79 91 L50 70 L21 91 L32 57 L5 35 L39 35 Z" stroke="#c9973a" stroke-width="1.5" fill="none"/>
+  </svg>
+  <svg class="corner-ornament br" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 5 L61 35 L95 35 L68 57 L79 91 L50 70 L21 91 L32 57 L5 35 L39 35 Z" stroke="#c9973a" stroke-width="1.5" fill="none"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">مطبخ أصيل • وصفات عريقة • طعم لا يُنسى</div>
+    <h1 class="hero-title">
+      قائمة المأكولات
+      <span>الشهية والعريقة</span>
+    </h1>
+    <p class="hero-subtitle">أكلات بيتية بحبٍ وشغفٍ لكل الطلبات</p>
+    <div class="hero-divider"><div class="hero-divider-gem"></div></div>
+    <div class="cta-group">
+      <a href="#menu" class="btn btn-primary">🍽 شوف القائمة</a>
+      <a href="https://wa.me/201204110502" target="_blank" class="btn btn-outline">📱 اطلب دلوقتي</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-header reveal">
+    <div class="section-label">القائمة الكاملة</div>
+    <h2 class="section-title">كل اللي قلبك يتمنّاه 🤤</h2>
+    <div class="gold-line"><div class="gold-line-dot"></div></div>
+  </div>
+
+  <div class="menu-grid">
+
+    <!-- محاشي وطواجن (right column) -->
+    <div class="menu-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🫕</span>
+        <h3 class="category-title">المحاشي والطواجن</h3>
+      </div>
+
+      <div class="menu-item">
+        <span class="item-name">كيلو محشي مشكل (كرنب، ورق عنب، باذنجان، كوسة، فلفل) — اختيار 4 أصناف فقط</span>
+        <span class="item-price">كيلو | 250 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">طاجن لحمة بالبصل</span>
+        <span class="item-price">صينية | 300 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">طاجن توربة بالبضل</span>
+        <span class="item-price">نصف كيلو | 330 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">طاجن تورلي (خضار قطع اللحم)</span>
+        <span class="item-price">نصف كيلو | 380 ج.م</span>
+      </div>
+    </div>
+
+    <!-- أطباق اللحوم والدواجن -->
+    <div class="menu-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🍗</span>
+        <h3 class="category-title">أطباق اللحوم والدواجن</h3>
+      </div>
+
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو بيكاتا لحمة بصوص الكريمة والمشروم</span>
+        <span class="item-price">نصف كيلو | 500 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو بيكاتا بانيه فراخ بصوص الكريمة والمشروم</span>
+        <span class="item-price">نصف كيلو | 350 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو بيكاتا بانيه فراخ بصوص الكريمة والمشروم</span>
+        <span class="item-price">نصف كيلو | 250 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو بانيه محمر</span>
+        <span class="item-price">نصف كيلو | 250 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">فرخة مشوية (كاملة أو قطع)</span>
+        <span class="item-price">فرخة | 300 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">فرخة مشوية محشية</span>
+        <span class="item-price">فرخة | 350 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو كبسة باللحمة (أرز بسمتي مع اللحم)</span>
+        <span class="item-price">نصف كيلو | 560 ج.م</span>
+      </div>
+    </div>
+
+    <!-- محاشي وطواجن (left column) -->
+    <div class="menu-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🍲</span>
+        <h3 class="category-title">المحاشي والطواجن</h3>
+      </div>
+
+      <div class="menu-item">
+        <span class="item-name">كيلو محشي مشكل (كرنب، ورق عنب، باذنجان، كوسة، فلفل) — اختيار 4 أصناف فقط</span>
+        <span class="item-price">كيلو | 250 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">صينية بشاميل (تكفي 4–6 أفراد)</span>
+        <span class="item-price">صينية | 300 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو صينية بطاطس بالفراخ</span>
+        <span class="item-price">نصف كيلو | 450 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو صينية بطاطس باللحمة</span>
+        <span class="item-price">نصف كيلو | 550 ج.م</span>
+      </div>
+    </div>
+
+    <!-- الشوربة والمقبلات -->
+    <div class="menu-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🥣</span>
+        <h3 class="category-title">الشوربة والمقبلات</h3>
+      </div>
+
+      <div class="menu-item">
+        <span class="item-name">شوربة لسان عصفور</span>
+        <span class="item-price">طبق | 70 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">شوربة مشروم بالفراخ</span>
+        <span class="item-price">طبق | 120 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">ملوخية</span>
+        <span class="item-price">طبق | 80 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">سمبوسة لحمة</span>
+        <span class="item-price">القطعة | 15 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">سمبوسة جبنة</span>
+        <span class="item-price">القطعة | 10 ج.م</span>
+      </div>
+    </div>
+
+    <!-- المكرونة والأرز -->
+    <div class="menu-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🍝</span>
+        <h3 class="category-title">المكرونة والأرز</h3>
+      </div>
+
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو مكرونة وايت صوص بالفراخ والمشروم</span>
+        <span class="item-price">نصف كيلو | 250 ج.م</span>
+      </div>
+      <div class="menu-item">
+        <span class="item-name">نصف كيلو أرز (أبيض أو بالشعرية)</span>
+        <span class="item-price">نصف كيلو | 80 ج.م</span>
+      </div>
+    </div>
+
+    <!-- الحلويات -->
+    <div class="menu-category reveal">
+      <div class="category-header">
+        <span class="category-icon">🍮</span>
+        <h3 class="category-title">الحلويات</h3>
+      </div>
+
+      <div class="menu-item">
+        <span class="item-name">أرز باللبن (عرض قطعتين)</span>
+        <span class="item-price">طبقين | 60 ج.م</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-label">قصتنا</div>
+    <h2 class="section-title">طعم البيت في كل طبق</h2>
+    <div class="gold-line"><div class="gold-line-dot"></div></div>
+  </div>
+
+  <div class="about-inner">
+    <p class="about-text reveal">
+      بنطبخ بحب وبنعتز بكل طبق بيطلع من مطبخنا.
+      وصفات أصيلة، خامات طازجة، وايد اهتمام بأدق التفاصيل عشان توصّلك أحسن أكلة ممكنة.
+      سواء طلب عيلتك، حفلة، أو وليمة — إحنا موجودين! 🫶
+    </p>
+
+    <div class="about-features">
+      <div class="feature-card reveal">
+        <span class="feature-icon">🥗</span>
+        <div class="feature-title">خامات طازجة</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🏠</span>
+        <div class="feature-title">طبخ بيتي أصيل</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">📦</span>
+        <div class="feature-title">توصيل للباب</div>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">❤️</span>
+        <div class="feature-title">مطبوخ بحب</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-label">تواصل معنا</div>
+    <h2 class="section-title">اطلب دلوقتي!</h2>
+    <div class="gold-line"><div class="gold-line-dot"></div></div>
+  </div>
+
+  <div class="contact-inner">
+    <p style="color: rgba(245,230,192,0.6); margin-bottom: 0.5rem; font-size:1rem;" class="reveal">
+      مستنيينك! كلّمنا وهنرد عليك في أسرع وقت 🤍
+    </p>
+
+    <div class="contact-cards reveal">
+
+      <!-- Phone -->
+      <a href="tel:01204110502" class="contact-card">
+        <span class="contact-icon">📞</span>
+        <span class="contact-label">اتصل بنا</span>
+        <span class="contact-value">01204110502</span>
+        <span class="contact-action">اضغط للاتصال المباشر</span>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/201204110502" target="_blank" class="contact-card whatsapp">
+        <span class="contact-icon">💬</span>
+        <span class="contact-label">واتساب</span>
+        <span class="contact-value">01204110502</span>
+        <span class="contact-action">اضغط للتواصل عبر واتساب</span>
+      </a>
+
+    </div>
+
+    <div class="note-bar reveal">
+      ⚠️ ملاحظة: الأسعار قابلة للزيادة حسب سعر اليوم
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>صُنع بحب لأجمل مطبخ بيتي 🍽 &nbsp;|&nbsp; <span>جميع الحقوق محفوظة © 2025</span></p>
+</footer>
+
+<script>
+  // Floating particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (8 + Math.random() * 15) + 's';
+    p.style.animationDelay = (Math.random() * 15) + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+    p.style.opacity = Math.random() * 0.4;
+    container.appendChild(p);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav toggle
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
